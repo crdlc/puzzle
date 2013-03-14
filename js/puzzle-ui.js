@@ -5,8 +5,7 @@ const OFFSET_TOP = 50; // Header height
 
 const UI = (function() {
   navigator.mozL10n.ready(function localize() {
-    document.documentElement.lang = navigator.mozL10n.language.code;
-    document.documentElement.dir = navigator.mozL10n.language.direction;
+    // Do nothing rigth now
   });
 
   var settingsView = document.querySelector('#settings-view');
