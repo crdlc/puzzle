@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Puzzle Game</title>
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" type="text/css" href="style/headers.css">
+
+    <!-- Specific code -->
+    <link rel="stylesheet" type="text/css" href="style/puzzle.css">
+
+    <!-- Localization -->
+    <link rel="resource" type="application/l10n" href="locales/locales.ini">
+    <script type="application/javascript" src="js/l10n.js"></script>
+
+    <!-- Specific code -->
+    <script defer type="application/javascript" src="js/puzzle-game.js"></script>
+    <script defer type="application/javascript" src="js/puzzle-ui.js"></script>
+  </head>
+
+  <body>
+    <!-- Main view -->
+    <section id="main-view" class="view" role="region" data-page-position="viewport">
+      <header>
+        <menu type="toolbar">
+          <a href="#" id="settings-open">
+            <span class="icon icon-settings" data-l10n-id="settings">
+              Settings
+            </span>
+          </a>
+        </menu>
+        <h1 data-l10n-id="game-title">Puzzle Game</h1>
+
+      </header>
+
+      <section>
+        <a id="play-button" data-l10n-id="game-start">Start</a>
+      </section>
+    </section>
+
+    <!-- Game -->
+    <section id="settings-view" class="skin-organic view" role="region" data-page-position="bottom">
+      <header>
+        <a href="#" id="settings-close">
+          <span class="icon icon-close" data-l10n-id="exit">Exit</span>
+        </a>
+        <h1 data-l10n-id="settings">Settings</h1>
+      </header>
+      <section>
+        <a id="level-button" data-l10n-id="level">How do you feel today? Tell us your level:
+          <span data-l10n-id="level-advanced">Advanced</span>
+        </a>
+
+        <select id="level-select" name="level-select">
+          <option value="2" data-l10n-id="level-beginner">Beginner</option>
+          <option value="3" data-l10n-id="level-intermediate">Intermediate</option>
+          <option value="4" data-l10n-id="level-advanced" selected>Advanced</option>
+          <option value="5" data-l10n-id="level-expert">Expert</option>
+        </select>
+      </section>
+    </section>
+
+    <!-- Game -->
+    <section id="game-view" class="view" role="region" data-page-position="right">
+      <header>
+        <a href="#" id="game-close">
+          <span class="icon icon-close" data-l10n-id="exit">Exit</span>
+        </a>
+        <h1 data-l10n-id="game-title">Puzzle Game</h1>
+      </header>
+      <section id="tiles_wrapper">
+        <div id="tiles"></div>
+        <div id="win">
+          <span data-l10n-id="you-win">You win!</span>
+        </div>
+      </section>
+    </section>
+  </body>
+</html>

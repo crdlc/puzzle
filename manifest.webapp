@@ -1,0 +1,23 @@
+{
+  "name": "Puzzle",
+  "description": "Puzzle Game",
+  "type": "certified",
+  "permissions": {
+    "settings":{ "access": "readonly" }
+  },
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "Cristian Rodriguez de la Cruz"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Puzzle",
+      "description": "Puzzle Game"
+    }
+  },
+  "default_locale": "en-US",
+  "icons": {
+    "60": "/style/icons/puzzle.png"
+  },
+  "orientation": "portrait-primary"
+}
