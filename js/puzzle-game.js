@@ -5,6 +5,7 @@ const Game = (function() {
 
   // Supporting mouse and touch events
   var isTouch = 'ontouchstart' in window;
+  var touchstart = isTouch ? 'touchstart' : 'mousedown';
   var touchmove = isTouch ? 'touchmove' : 'mousemove';
   var touchend = isTouch ? 'touchend' : 'mouseup';
 
@@ -41,11 +42,37 @@ const Game = (function() {
 
   const DRAGGING_TRANSITION = '-moz-transform .3s';
 
+  // Long press delay
+  const PICK_DELAY = 200;
+
+  // Timeout var to cancel the long press when the user releases the finger
+  var pickTimeout = null;
+
+  // It cancels the long press
+  function cancelLongPress() {
+    clearTimeout(pickTimeout);
+    pickTimeout = null;
+  }
+
   function handleLongPress(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+
     sourceTile = evt.target;
 
     if (!'position' in sourceTile.dataset)
       return;
+
+    pickTimeout = setTimeout(function pressed() {
+      window.removeEventListener(touchend, cancelLongPress);
+      pickTile(evt);
+    }, PICK_DELAY);
+
+    window.addEventListener(touchend, cancelLongPress);
+  }
+
+  function pickTile(evt) {
+    window.addEventListener(touchend, handleEndEvent);
 
     dragTile = sourceTile.cloneNode();
     dragTile.classList.add('draggable');
@@ -56,12 +83,11 @@ const Game = (function() {
     style.top = rectangle.top + 'px';
     document.body.appendChild(dragTile);
 
-    startX = lastX = evt.pageX;
-    startY = lastY = evt.pageY;
+    startX = lastX = getX(evt);
+    startY = lastY = getY(evt);
 
-    puzzle.removeEventListener('contextmenu', handleLongPress);
+    puzzle.removeEventListener(touchstart, handleLongPress);
     window.addEventListener(touchmove, handleMoveEvent);
-    window.addEventListener(touchend, handleEndEvent);
 
     sourceTile.style.opacity = 0;
   }
@@ -80,9 +106,9 @@ const Game = (function() {
 
     var targetTile = document.elementFromPoint(lastX, lastY);
 
+    var sourceIndex = tiles.indexOf(sourceTile);
     var targetIndex = tiles.indexOf(targetTile);
-    if (targetIndex !== -1) {
-      var sourceIndex = tiles.indexOf(sourceTile);
+    if (targetIndex !== -1 && sourceIndex !== targetIndex) {
       translate(sourceTile, sourceIndex, targetIndex);
       translate(targetTile, targetIndex, sourceIndex, DRAGGING_TRANSITION);
       targetTile.addEventListener('transitionend', function transitionend() {
@@ -94,13 +120,13 @@ const Game = (function() {
         targetTile.style.MozTransition = '';
         sourceTile.style.opacity = 1;
         document.body.removeChild(dragTile);
-        puzzle.addEventListener('contextmenu', handleLongPress);
+        puzzle.addEventListener(touchstart, handleLongPress);
         setTimeout(checkTheEnd);
       });
     } else {
       sourceTile.style.opacity = 1;
       document.body.removeChild(dragTile);
-      puzzle.addEventListener('contextmenu', handleLongPress);
+      puzzle.addEventListener(touchstart, handleLongPress);
       setTimeout(checkTheEnd);
     }
   }
@@ -155,7 +181,7 @@ const Game = (function() {
       if (puzzle.children.length === rows * rows) {
         tiles = Array.prototype.slice.call(puzzle.children, 0,
                                            puzzle.children.length);
-        puzzle.addEventListener('contextmenu', handleLongPress);
+        puzzle.addEventListener(touchstart, handleLongPress);
       }
     });
   }
@@ -187,7 +213,7 @@ const Game = (function() {
   }
 
   function destroy() {
-    puzzle.removeEventListener('contextmenu', handleLongPress);
+    puzzle.removeEventListener(touchstart, handleLongPress);
     window.removeEventListener(touchmove, handleMoveEvent);
     window.removeEventListener(touchend, handleEndEvent);
     winView.classList.remove('show');

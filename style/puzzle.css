@@ -109,14 +109,6 @@ section[role="region"] > header .icon.icon-settings {
   border: 1px solid #666;
 }
 
-#tiles > img:active {
-  filter: url('/index.html#blur');
-}
-
-#tiles > img:hover {
-  opacity: .8;
-}
-
 .draggable {
   z-index: 100;
   position: fixed;
