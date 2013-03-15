@@ -1,8 +1,6 @@
 
 'use strict';
 
-
-
 const UI = (function() {
   navigator.mozL10n.ready(function localize() {
     // Do nothing rigth now
@@ -35,7 +33,7 @@ const UI = (function() {
   var playButton = document.querySelector('#play-button');
   playButton.addEventListener('click', function(e) {
     var offsetTop = document.querySelector('#game-view > header').offsetHeight;
-    
+
     var activity = new MozActivity({
       name: 'pick',
       data: {
