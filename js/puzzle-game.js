@@ -35,10 +35,12 @@ const Game = (function() {
 
   var rows = 4;
 
-  var levelSelect = document.querySelector('#level-select');
-  levelSelect.addEventListener('change', function onChange(e) {
-    rows = levelSelect.value;
-  });
+  var levelRadios = document.querySelectorAll('input[name="level"]');
+  for (var i = 0; i < levelRadios.length; i++) {
+    levelRadios[i].addEventListener('change', function onChange(e) {
+      rows = e.target.value;
+    });
+  }
 
   const DRAGGING_TRANSITION = '-moz-transform .3s';
 

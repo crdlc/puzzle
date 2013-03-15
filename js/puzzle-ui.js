@@ -19,8 +19,8 @@ const UI = (function() {
     window.alert(navigator.mozL10n.get('help-message'));
   });
 
-  var settingsClose = document.querySelector('#settings-close');
-  settingsClose.addEventListener('click', function(e) {
+  var settingsDone = document.querySelector('#settings-done');
+  settingsDone.addEventListener('click', function(e) {
     settingsView.dataset.pagePosition = 'bottom';
   });
 
@@ -52,12 +52,5 @@ const UI = (function() {
     activity.onerror = function() {
       window.console.error('Error picking a picture: ', activity.error);
     };
-  });
-
-  var levelSelect = document.querySelector('#level-select');
-  var levelSpan = document.querySelector('#level-button > span');
-  levelSelect.addEventListener('change', function onChange(e) {
-    levelSpan.textContent = levelSelect.querySelector('option[value="' +
-                                          levelSelect.value + '"]').textContent;
   });
 }());

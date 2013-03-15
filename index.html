@@ -6,6 +6,9 @@
 
     <!-- Shared styles -->
     <link rel="stylesheet" type="text/css" href="style/headers.css">
+    <link rel="stylesheet" type="text/css" href="style/buttons.css">
+    <link rel="stylesheet" type="text/css" href="style/list.css">
+    <link rel="stylesheet" type="text/css" href="style/switches.css">
 
     <!-- Specific code -->
     <link rel="stylesheet" type="text/css" href="style/puzzle.css">
@@ -35,29 +38,52 @@
       </header>
 
       <section>
-        <a id="play-button" data-l10n-id="game-start">Start</a>
+        <button id="play-button" data-l10n-id="game-start">Start New Puzzle!</button>
       </section>
     </section>
 
     <!-- Game -->
     <section id="settings-view" class="skin-organic view" role="region" data-page-position="bottom">
       <header>
-        <a href="#" id="settings-close">
-          <span class="icon icon-close" data-l10n-id="exit">Exit</span>
-        </a>
-        <h1 data-l10n-id="settings">Settings</h1>
+        <menu type="toolbar">
+          <button id="settings-done" data-l10n-id="done">Done</button>
+        </menu>
+        <h1 data-l10n-id="settings">Puzzle Settings</h1>
       </header>
       <section>
-        <a id="level-button" data-l10n-id="level">How do you feel today? Tell us your level:
-          <span data-l10n-id="level-advanced">Advanced</span>
-        </a>
-
-        <select id="level-select" name="level-select">
-          <option value="2" data-l10n-id="level-beginner">Beginner</option>
-          <option value="3" data-l10n-id="level-intermediate">Intermediate</option>
-          <option value="4" data-l10n-id="level-advanced" selected>Advanced</option>
-          <option value="5" data-l10n-id="level-expert">Expert</option>
-        </select>
+        <header>
+          <h2 data-l10n-id="level">Difficulty level</h2>
+        </header>
+        <ul>
+          <li>
+            <label>
+              <input type="radio" name="level" value="2" />
+              <span></span>
+            </label>
+            <a data-l10n-id="level-beginner">Beginner</a>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="level" value="3" />
+              <span></span>
+            </label>
+            <a data-l10n-id="level-intermediate">Intermediate</a>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="level" value="4" />
+              <span></span>
+            </label>
+            <a data-l10n-id="level-advanced">Advanced</a>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="level" value="5" checked />
+              <span></span>
+            </label>
+            <a data-l10n-id="level-expert">Expert</a>
+          </li>
+        </ul>
       </section>
     </section>
 
@@ -76,7 +102,7 @@
         </menu>
         <h1 data-l10n-id="game-title">Puzzle Game</h1>
       </header>
-      <section id="tiles_wrapper">
+      <section>
         <div id="tiles"></div>
         <div id="win">
           <span data-l10n-id="you-win">You win!</span>

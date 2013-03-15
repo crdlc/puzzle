@@ -13,7 +13,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #f5f5f5;
 }
 
 .view:not(#main-view) {
@@ -36,32 +36,30 @@ html, body {
   transform: translateX(100%);
 }
 
-/* Main view */
-
-#main-view, #settings-view {
-  background-image: url(background.jpg);
-  background-position: bottom left;
-  background-repeat: no-repeat;
-}
-
-#main-view > section, #settings-view > section {
+.view > section {
   width: 100%;
   height: calc(100% - 5rem);
-  background-color: rgba(0,0,0,.75);
 }
 
-#play-button, #level-button {
-  padding-top: 14rem;
-  text-decoration: none;
-  font-size: 7rem;
-  font-weight: bold;
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+/* Main view */
 
-  color: #fff;
-  text-shadow: 0px 1px 1px #888;
+#main-view {
+  background: url(images/background.png) repeat;
+}
+
+#main-view > section{
+  text-align: center;
+}
+
+#play-button {
+  margin-top: 15rem;
+  border-width: .2rem;
+  height: 6rem;
+  font: 500 2.6rem/6rem 'MozTT', Sans-serif;
+  width: auto;
+  border-radius: .5rem;
+  text-shadow: .1rem .1rem 0 rgba(0,0,0,0.3);
+  box-shadow: .2rem .2rem 0 rgba(0,0,0,0.3);
 }
 
 /* Settings view */
@@ -70,37 +68,50 @@ section[role="region"] > header .icon.icon-settings {
   background-image: url(images/settings.png);
 }
 
-#level-button {
-  font-size: 2.9rem;
-  font-weight: normal;
-  pointer-events: none;
+#settings-view ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
 }
 
-#level-button > span {
+#settings-view ul li {
+  position: relative;
+  border-bottom: 0.1rem solid #e6e6e3;
+  color: #000;
+  -moz-box-sizing: border-box;
+  min-height: 6rem;
+}
+
+#settings-view ul li > a {
   display: block;
-  color: yellow;
-  font-size: 3.5rem;
-  margin-top: 2rem;
+  text-decoration: none;
+  outline: 0;
+  color: #000;
+  -moz-box-sizing: border-box;
+  height: 6rem;
+  font-size: 2.1rem;
+  line-height: 6rem;
+  padding: 0 3rem;
 }
 
-#level-select {
-  top: 0;
+#settings-view ul li > label:not([for]) {
   position: absolute;
-  opacity: 0;
-  display: block;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+}
+
+#settings-view ul li > label:not([for]) > span {
+  left: auto;
+  right: 3rem;
 }
 
 /* Game */
 
 #game-view {
   background-color: #000;
-}
-
-#tiles_wrapper {
-  width: 100%;
-  height: calc(100% - 5rem);
 }
 
 #tiles > img {
@@ -143,4 +154,8 @@ section[role="region"] > header .icon.icon-settings {
 
 section[role="region"] > header .icon.icon-help {
   background-image: url(images/help.png);
+}
+
+#game-close > span {
+  background-image: url(images/close.png);
 }
