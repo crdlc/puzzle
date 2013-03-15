@@ -95,7 +95,7 @@ section[role="region"] > header .icon.icon-settings {
 /* Game */
 
 #game-view {
-  background-color: #fff;
+  background-color: #000;
 }
 
 #tiles_wrapper {
@@ -105,15 +105,13 @@ section[role="region"] > header .icon.icon-settings {
 
 #tiles > img {
   float: left;
-  border-radius: 5px;
-  border: 1px solid #666;
+  border: 1px solid #000;
 }
 
 .draggable {
   z-index: 100;
   position: fixed;
   pointer-events: none;
-  border-radius: 7.5px;
   box-shadow: 0 0 5px 5px #444;
 }
 
