@@ -67,6 +67,13 @@
         <a href="#" id="game-close">
           <span class="icon icon-close" data-l10n-id="exit">Exit</span>
         </a>
+        <menu type="toolbar">
+          <a href="#" id="help-open">
+            <span class="icon icon-help" data-l10n-id="help">
+              Help
+            </span>
+          </a>
+        </menu>
         <h1 data-l10n-id="game-title">Puzzle Game</h1>
       </header>
       <section id="tiles_wrapper">
@@ -76,5 +83,14 @@
         </div>
       </section>
     </section>
+
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <filter id="blur">
+       <feColorMatrix type="matrix" values="0 0 0 0 0
+                                            0 1 0 0.1 0
+                                            0 0 1 0.2 0
+                                            0 0 0 1 0"/>
+      </filter>
+     </svg>
   </body>
 </html>

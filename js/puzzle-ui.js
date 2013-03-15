@@ -1,7 +1,7 @@
 
 'use strict';
 
-const OFFSET_TOP = 50; // Header height
+
 
 const UI = (function() {
   navigator.mozL10n.ready(function localize() {
@@ -14,6 +14,11 @@ const UI = (function() {
   var settingsOpen = document.querySelector('#settings-open');
   settingsOpen.addEventListener('click', function(e) {
     settingsView.dataset.pagePosition = 'viewport';
+  });
+
+  var helpOpen = document.querySelector('#help-open');
+  helpOpen.addEventListener('click', function(e) {
+    window.alert(navigator.mozL10n.get('help-message'));
   });
 
   var settingsClose = document.querySelector('#settings-close');
@@ -29,12 +34,14 @@ const UI = (function() {
 
   var playButton = document.querySelector('#play-button');
   playButton.addEventListener('click', function(e) {
+    var offsetTop = document.querySelector('#game-view > header').offsetHeight;
+    
     var activity = new MozActivity({
       name: 'pick',
       data: {
         type: 'image/jpeg',
         width: window.innerWidth - (2 * Game.rows),
-        height: window.innerHeight - OFFSET_TOP - (2 * Game.rows)
+        height: window.innerHeight - offsetTop - (2 * Game.rows)
       }
     });
 

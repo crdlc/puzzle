@@ -18,6 +18,11 @@ const Game = (function() {
                      function(e) { return e.pageY; };
   })();
 
+  var vibrate = (function vibrateWrapper() {
+    return 'vibrate' in navigator ? function(t) { navigator.vibrate(t) } :
+                                    function() { /* noop */ };
+  })();
+
   var image, dimensions;
 
   var puzzle = document.querySelector('#tiles');
@@ -58,7 +63,7 @@ const Game = (function() {
     window.addEventListener(touchmove, handleMoveEvent);
     window.addEventListener(touchend, handleEndEvent);
 
-    sourceTile.style.opacity = 0.1;
+    sourceTile.style.opacity = 0;
   }
 
   function handleMoveEvent(e) {
@@ -82,6 +87,8 @@ const Game = (function() {
       translate(targetTile, targetIndex, sourceIndex, DRAGGING_TRANSITION);
       targetTile.addEventListener('transitionend', function transitionend() {
         targetTile.removeEventListener('transitionend', transitionend);
+        if (sourceTile.dataset.position === targetIndex.toString())
+          vibrate([100]);
         tiles[sourceIndex] = targetTile;
         tiles[targetIndex] = sourceTile;
         targetTile.style.MozTransition = '';
