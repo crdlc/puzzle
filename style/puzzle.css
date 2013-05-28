@@ -2,7 +2,17 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden !important;
-  font-size: 10px;
+  font-size: 62.5%!important;
+}
+
+/*Portrait*/
+@media all and (min-device-width: 540px) and (max-device-width: 720px) and (max-device-aspect-ratio: 1/1) {
+  html, body { font-size: 105%!important; }
+}
+
+/*Landscape*/
+@media all and (min-device-width: 960px) and (max-device-width: 1280px) and (min-device-aspect-ratio: 1/1) {
+  html, body { font-size: 105%!important; }
 }
 
 .view {
@@ -44,11 +54,10 @@ html, body {
 /* Main view */
 
 #main-view {
-  background: url(images/background.png);
-  background-size: 100% auto;
+  background: -moz-radial-gradient(center, ellipse cover, #7d7e7d 0%, #0e0e0e 100%);
 }
 
-#main-view > section{
+#main-view > section {
   text-align: center;
 }
 

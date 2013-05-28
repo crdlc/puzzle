@@ -1,7 +1,7 @@
 {
   "name": "Puzzle",
   "description": "Puzzle Game",
-  "type": "certified",
+  "type": "privileged",
   "permissions": {
     "settings":{ "access": "readonly" }
   },

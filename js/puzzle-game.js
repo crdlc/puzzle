@@ -34,11 +34,16 @@ const Game = (function() {
   var dragTile, sourceTile;
 
   var rows = 4;
+  if (document.cookie) {
+    rows = parseInt(document.cookie, 10);
+    document.querySelector('input[name="level"][value="' + rows + '"]').
+                                                                checked = true;
+  }
 
   var levelRadios = document.querySelectorAll('input[name="level"]');
   for (var i = 0; i < levelRadios.length; i++) {
     levelRadios[i].addEventListener('change', function onChange(e) {
-      rows = e.target.value;
+      rows = document.cookie = e.target.value;
     });
   }
 
